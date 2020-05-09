@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
-import { Form, Input, Button, Checkbox } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { Form, Input, Button } from 'antd';
+import { UserOutlined, MessageOutlined } from '@ant-design/icons';
 
 const Join = () => {
   const [name, setName] = useState('');
@@ -23,6 +23,7 @@ const Join = () => {
     >
       <Form.Item
         name="username"
+        onChange={(evt) => setName(evt.target.value)}
         rules={[
           {
             required: true,
@@ -33,35 +34,27 @@ const Join = () => {
         <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
       </Form.Item>
       <Form.Item
-        name="password"
+        name="room"
+        onChange={(evt) => setRoom(evt.target.value)}
         rules={[
           {
             required: true,
-            message: 'Please input your Password!',
+            message: 'Please input your Room!',
           },
         ]}
       >
-        <Input
-          prefix={<LockOutlined className="site-form-item-icon" />}
-          type="password"
-          placeholder="Password"
-        />
-      </Form.Item>
-      <Form.Item>
-        <Form.Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
-        <a className="login-form-forgot" href="">
-          Forgot password
-        </a>
+        <Input prefix={<MessageOutlined className="site-form-item-icon" />} placeholder="Room" />
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
-        </Button>
-        Or <a href="">register now!</a>
+        <Link
+          onClick={(evt) => (!name || !room ? evt.preventDefault() : null)}
+          to={`/chat?name=${name}&room=${room}`}
+        >
+          <Button type="primary" htmlType="submit" className="login-form-button">
+            Sign in
+          </Button>
+        </Link>
       </Form.Item>
     </Form>
   );

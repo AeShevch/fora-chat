@@ -5,7 +5,7 @@ import JoinForm from "./Form/Form";
 
 const Join = () => {
   return (
-    <Card title="Join chat" bordered={false} style={{ width: 300 }}>
+    <Card title="Join chat" bordered={false} style={{ width: 400 }}>
       <JoinForm />
     </Card>
   );

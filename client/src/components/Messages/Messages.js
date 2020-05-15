@@ -20,7 +20,6 @@ const CommentList = ({ comments }) => {
       itemLayout="horizontal"
       renderItem={(props) => (
         <List.Item>
-          {console.log({ ...props })}
           <Comment {...adapter(props)} />
         </List.Item>
       )}
@@ -43,19 +42,15 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
 
 export default class ChatForm extends React.Component {
   constructor(props) {
-    console.log("click");
     super(props);
-    // console.log(props);
     this.state = {
       comments: "",
       submitting: false,
       value: "",
     };
   }
-  // this.state.comments = this.props.messages;
 
   handleSubmit = (evt) => {
-    // console.log(this.props.messages);
     if (!this.state.value) {
       return;
     }
@@ -64,8 +59,8 @@ export default class ChatForm extends React.Component {
       comments: [
         {
           author: this.props.name,
-          avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-          content: <p>{this.state.value}</p>,
+          avatar: AVATAR_PATH,
+          content: this.state.value,
           datetime: moment().fromNow(),
         },
         ...this.state.comments,
@@ -91,8 +86,6 @@ export default class ChatForm extends React.Component {
 
   render() {
     const { comments, submitting, value } = this.state;
-
-    console.log(this.props.messages);
 
     return (
       <div>

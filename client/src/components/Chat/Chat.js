@@ -4,6 +4,7 @@ import io from "socket.io-client";
 
 import InfoBar from "../InfoBar/InfoBar";
 import Messages from "../Messages/Messages";
+import { Card } from "antd";
 
 let socket;
 
@@ -49,7 +50,7 @@ const Chat = ({ location }) => {
   };
 
   return (
-    <div>
+    <Card title="Chat" bordered={false} style={{ width: 400 }}>
       <InfoBar room={room} />
       <Messages
         name={name}
@@ -58,7 +59,7 @@ const Chat = ({ location }) => {
         setMessage={setMessage}
         sendMessage={sendMessage}
       />
-    </div>
+    </Card>
   );
 };
 

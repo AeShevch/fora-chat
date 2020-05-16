@@ -6,6 +6,8 @@ import InfoBar from "../InfoBar/InfoBar";
 import Messages from "../Messages/Messages";
 import { Card } from "antd";
 
+import "./Chat.scss";
+
 let socket;
 
 const Chat = ({ location }) => {
@@ -50,7 +52,7 @@ const Chat = ({ location }) => {
   };
 
   return (
-    <Card title="Chat" bordered={false} style={{ width: 400 }}>
+    <Card className="fc-chat-room" title="Chatroom" bordered={false}>
       <InfoBar room={room} />
       <Messages
         name={name}

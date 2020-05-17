@@ -65,7 +65,7 @@ export default class Chat extends React.Component {
 
   render() {
     return (
-      <Card className="fc-chat-room" title="Chatroom" bordered={false}>
+      <Card className="fc-chat-room" title={`Chatroom «${this.state.room}»`} bordered={false}>
         <InfoBar room={this.state.room} />
         <Messages
           name={this.state.name}

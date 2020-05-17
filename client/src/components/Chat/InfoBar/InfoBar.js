@@ -11,8 +11,7 @@ export default class InfoBar extends React.Component {
       <PageHeader
         className="site-page-header"
         onBack={() => (window.location.href = "/")}
-        title={this.props.room}
-        subTitle="This is a subtitle"
+        title="Choose another chat"
       />
     );
   }

@@ -6,3 +6,11 @@
   color: #ccc;
   padding: 10px;
 }
+
+.ant-page-header {
+  padding: 0;
+
+  &-heading-title {
+    font-size: 1rem;
+  }
+}

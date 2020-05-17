@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import logo from "./logo.svg";
-import Join from "./components/Join/Join";
-import Chat from "./components/Chat/Chat";
+import JoinPage from "./components/JoinPage/JoinPage";
+import ChatPage from "./components/ChatPage/ChatPage";
 
 import "./App.scss";
 
@@ -20,8 +20,8 @@ export default class App extends React.Component {
         </Header>
         <Content className="fc-main__content">
           <Router>
-            <Route path="/" exact component={Join} />
-            <Route path="/chat" exact component={Chat} />
+            <Route path="/" exact component={JoinPage} />
+            <Route path="/chat" exact component={ChatPage} />
           </Router>
         </Content>
         <Footer className="fc-main__footer">

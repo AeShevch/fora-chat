@@ -2,10 +2,10 @@ import React from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
 
-import "./Chat.scss";
+import "./ChatPage.scss";
 
 import InfoBar from "./InfoBar/InfoBar";
-import Messages from "./Messages/Messages";
+import Chat from "./Chat/Chat";
 import UsersList from "./UsersList/UsersList";
 import { Card, Row, Col } from "antd";
 
@@ -13,7 +13,7 @@ const END_POINT = "localhost:5000";
 
 let socket;
 
-export default class Chat extends React.Component {
+export default class ChatPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -71,7 +71,7 @@ export default class Chat extends React.Component {
         <InfoBar room={this.state.room} />
         <Row>
           <Col span={18}>
-            <Messages
+            <Chat
               name={this.state.name}
               messages={this.state.messages}
               message={this.state.message}

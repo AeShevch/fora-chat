@@ -1,8 +1,7 @@
 import React from "react";
 import { Comment, Avatar, Form, Button, List, Input } from "antd";
 import moment from "moment";
-
-const { TextArea } = Input;
+import MessageForm from "../MessageForm/MessageForm";
 
 const AVATAR_PATH = `https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png`;
 
@@ -26,19 +25,6 @@ const CommentList = ({ comments }) => {
     />
   );
 };
-
-const Editor = ({ onChange, onSubmit, submitting, value }) => (
-  <div>
-    <Form.Item>
-      <TextArea rows={4} onChange={onChange} value={value} />
-    </Form.Item>
-    <Form.Item>
-      <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
-        Send Message
-      </Button>
-    </Form.Item>
-  </div>
-);
 
 export default class ChatForm extends React.Component {
   constructor(props) {
@@ -91,14 +77,9 @@ export default class ChatForm extends React.Component {
       <div>
         <CommentList comments={comments} />
         <Comment
-          avatar={
-            <Avatar
-              src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-              alt={this.props.name}
-            />
-          }
+          avatar={<Avatar src={AVATAR_PATH} alt={this.props.name} />}
           content={
-            <Editor
+            <MessageForm
               onChange={this.handleChange}
               onSubmit={this.handleSubmit}
               submitting={submitting}

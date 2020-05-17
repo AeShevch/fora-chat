@@ -3,9 +3,6 @@ import React from "react";
 import { PageHeader } from "antd";
 
 export default class InfoBar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <PageHeader

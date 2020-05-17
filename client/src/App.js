@@ -15,7 +15,7 @@ export default class App extends React.Component {
     return (
       <Layout className="fc-main">
         <Header className="fc-main__header">
-          <img className="fc-logo" src={logo} alt="Fora chat logo" />
+          <img className="fc-logo" src={logo} alt="Fora chat logo" /> ForaChat
         </Header>
         <Content className="fc-main__content">
           <Router>

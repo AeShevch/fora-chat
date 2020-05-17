@@ -1,68 +1,80 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
 
-import InfoBar from "../InfoBar/InfoBar";
-import Messages from "../Messages/Messages";
+import "./Chat.scss";
+
+import InfoBar from "./InfoBar/InfoBar";
+import Messages from "./Messages/Messages";
 import { Card } from "antd";
 
-import "./Chat.scss";
+const END_POINT = "localhost:5000";
 
 let socket;
 
-const Chat = ({ location }) => {
-  const [name, setName] = useState("");
-  const [room, setRoom] = useState("");
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
-  const [users, setUsers] = useState("");
-  const END_POINT = "localhost:5000";
+export default class Chat extends React.Component {
+  constructor(props) {
+    super(props);
 
-  useEffect(() => {
-    const { name, room } = queryString.parse(location.search);
+    this.state = {
+      name: "",
+      room: "",
+      message: "",
+      messages: "",
+      users: "",
+    };
+  }
+
+  componentDidMount() {
+    const { name, room } = queryString.parse(this.props.location.search);
 
     socket = io(END_POINT);
 
-    setRoom(room);
-    setName(name);
+    this.setState({ name, room });
 
     socket.emit("join", { name, room }, (error) => {
       if (error) {
         alert(error);
       }
     });
-  }, [END_POINT, location.search]);
 
-  useEffect(() => {
     socket.on("message", (message) => {
-      setMessages((messages) => [...messages, message]);
+      this.setState({
+        messages: [...this.state.messages, message],
+      });
     });
 
     socket.on("roomData", ({ users }) => {
-      setUsers(users);
+      this.setState({
+        users: users,
+      });
     });
-  }, []);
+  }
 
-  const sendMessage = (evt) => {
+  _sendMessage(evt) {
     evt.preventDefault();
 
-    if (message) {
-      socket.emit("sendMessage", message, () => setMessage(""));
+    if (this.state.message) {
+      socket.emit("sendMessage", this.state.message, () => this.setState({ message: "" }));
     }
-  };
+  }
 
-  return (
-    <Card className="fc-chat-room" title="Chatroom" bordered={false}>
-      <InfoBar room={room} />
-      <Messages
-        name={name}
-        messages={messages}
-        message={message}
-        setMessage={setMessage}
-        sendMessage={sendMessage}
-      />
-    </Card>
-  );
-};
+  _setMessage(message) {
+    this.setState({ message });
+  }
 
-export default Chat;
+  render() {
+    return (
+      <Card className="fc-chat-room" title="Chatroom" bordered={false}>
+        <InfoBar room={this.state.room} />
+        <Messages
+          name={this.state.name}
+          messages={this.state.messages}
+          message={this.state.message}
+          setMessage={this._setMessage.bind(this)}
+          sendMessage={this._sendMessage.bind(this)}
+        />
+      </Card>
+    );
+  }
+}

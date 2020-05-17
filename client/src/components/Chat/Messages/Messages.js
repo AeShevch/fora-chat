@@ -15,7 +15,7 @@ export default class ChatForm extends React.Component {
     };
   }
 
-  handleSubmit = (evt) => {
+  _handleSubmit = (evt) => {
     if (!this.state.value) {
       return;
     }
@@ -35,7 +35,7 @@ export default class ChatForm extends React.Component {
     this.props.sendMessage(evt);
   };
 
-  handleChange = (evt) => {
+  _handleChange = (evt) => {
     this.setState({
       value: evt.target.value,
     });
@@ -61,8 +61,8 @@ export default class ChatForm extends React.Component {
           avatar={<Avatar src={AVATAR_PATH} alt={this.props.name} />}
           content={
             <MessageForm
-              onChange={this.handleChange}
-              onSubmit={this.handleSubmit}
+              onChange={this._handleChange}
+              onSubmit={this._handleSubmit}
               submitting={submitting}
               value={value}
             />

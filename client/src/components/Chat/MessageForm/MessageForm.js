@@ -30,7 +30,7 @@ export default class MessageForm extends React.Component {
     }
   }
 
-  addEmoji = (e) => {
+  _addEmoji = (e) => {
     // TODO Now sends only with text
     const emoji = e.native;
 
@@ -38,26 +38,26 @@ export default class MessageForm extends React.Component {
       value: this.state.value + emoji,
     });
 
-    // const event = new Event("textarea", { bubbles: true });
+    // const event = new Event("input", { bubbles: true });
     // this.messageField.dispatchEvent(event);
   };
 
-  showEmojis = (e) => {
+  _showEmojis = () => {
     this.setState(
       {
         showEmojis: true,
       },
-      () => document.addEventListener("click", this.closeMenu)
+      () => document.addEventListener("click", this._closeMenu)
     );
   };
 
-  closeMenu = (e) => {
+  _closeMenu = (e) => {
     if (this.emojiPicker !== null && !this.emojiPicker.contains(e.target)) {
       this.setState(
         {
           showEmojis: false,
         },
-        () => document.removeEventListener("click", this.closeMenu)
+        () => document.removeEventListener("click", this._closeMenu)
       );
     }
   };
@@ -67,7 +67,6 @@ export default class MessageForm extends React.Component {
       <div>
         <Form.Item className="fc-message-form">
           <TextArea
-            ref={(TextArea) => (this.messageField = TextArea)}
             rows={3}
             onChange={this.props.onChange}
             onKeyPress={(evt) =>
@@ -78,10 +77,10 @@ export default class MessageForm extends React.Component {
           <div className="fc-message-form__picker">
             {this.state.showEmojis ? (
               <span ref={(el) => (this.emojiPicker = el)}>
-                <Picker onSelect={this.addEmoji} emojiTooltip={true} title="weChat" />
+                <Picker onSelect={this._addEmoji} emojiTooltip={true} title="weChat" />
               </span>
             ) : (
-              <button onClick={this.showEmojis}>{String.fromCodePoint(0x1f60a)}</button>
+              <button onClick={this._showEmojis}>{String.fromCodePoint(0x1f60a)}</button>
             )}
           </div>
         </Form.Item>

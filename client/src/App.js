@@ -15,7 +15,8 @@ export default class App extends React.Component {
     return (
       <Layout className="fc-main">
         <Header className="fc-main__header">
-          <img className="fc-logo" src={logo} alt="Fora chat logo" /> ForaChat
+          <img className="fc-logo" src={logo} alt="Fora chat logo" />
+          <span className="fc-logo__name">ForaChat</span>
         </Header>
         <Content className="fc-main__content">
           <Router>
@@ -24,7 +25,7 @@ export default class App extends React.Component {
           </Router>
         </Content>
         <Footer className="fc-main__footer">
-          Fora Chat ©2020 Created by A.Shevchenko for Fora Soft{" "}
+          ForaChat ©2020 Developed by A.Shevchenko for the company «Fora Soft»
         </Footer>
       </Layout>
     );

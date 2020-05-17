@@ -8,12 +8,14 @@ export default class MessagesList extends React.Component {
     super(props);
 
     this.state = {
+      currentUser: "",
       messages: [],
     };
   }
 
   componentDidMount() {
     this.setState({
+      currentUser: this.props.currentUser,
       messages: this.props.messages,
     });
   }
@@ -22,6 +24,11 @@ export default class MessagesList extends React.Component {
     if (prevProps.messages !== this.props.messages) {
       this.setState({
         messages: this.props.messages,
+      });
+    }
+    if (prevProps.currentUser !== this.props.currentUser) {
+      this.setState({
+        currentUser: this.props.currentUser,
       });
     }
   }
@@ -37,7 +44,7 @@ export default class MessagesList extends React.Component {
           itemLayout="horizontal"
           renderItem={(props) => (
             <List.Item>
-              <Message {...props} />
+              <Message currentUser={this.state.currentUser} {...props} />
             </List.Item>
           )}
         />

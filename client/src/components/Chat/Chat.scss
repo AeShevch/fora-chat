@@ -32,3 +32,31 @@
     }
   }
 }
+
+.fc-message-form {
+  position: relative;
+
+  &__picker {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+  }
+
+  & .emoji-mart-emoji {
+    &:focus {
+      outline: none;
+    }
+
+    & > span {
+      cursor: pointer!important;
+    }
+
+    & > button {
+      border: none;
+      background: none;
+      box-shadow: none;
+      -webkit-appearance: none;
+    }
+  }
+}

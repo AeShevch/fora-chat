@@ -7,7 +7,7 @@ import "./Chat.scss";
 import InfoBar from "./InfoBar/InfoBar";
 import Messages from "./Messages/Messages";
 import UsersList from "./UsersList/UsersList";
-import { Card, Row, Col, Divider } from "antd";
+import { Card, Row, Col } from "antd";
 
 const END_POINT = "localhost:5000";
 
@@ -79,7 +79,6 @@ export default class Chat extends React.Component {
             />
           </Col>
           <Col span={5} offset={1}>
-            <Divider type="vertical" />
             <UsersList users={this.state.users} />
           </Col>
         </Row>

@@ -1,5 +1,7 @@
 import React from "react";
 import { Button, Form, Input } from "antd";
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
 import { SendOutlined } from "@ant-design/icons";
 const { TextArea } = Input;
 
@@ -10,6 +12,7 @@ export default class MessageForm extends React.Component {
     this.state = {
       value: "",
       submitting: false,
+      showEmojis: false,
     };
   }
 
@@ -27,18 +30,60 @@ export default class MessageForm extends React.Component {
     }
   }
 
+  addEmoji = (e) => {
+    // TODO
+    const emoji = e.native;
+
+    this.setState({
+      value: this.state.value + emoji,
+    });
+
+    // const event = new Event("textarea", { bubbles: true });
+    // this.messageField.dispatchEvent(event);
+  };
+
+  showEmojis = (e) => {
+    this.setState(
+      {
+        showEmojis: true,
+      },
+      () => document.addEventListener("click", this.closeMenu)
+    );
+  };
+
+  closeMenu = (e) => {
+    if (this.emojiPicker !== null && !this.emojiPicker.contains(e.target)) {
+      this.setState(
+        {
+          showEmojis: false,
+        },
+        () => document.removeEventListener("click", this.closeMenu)
+      );
+    }
+  };
+
   render() {
     return (
       <div>
-        <Form.Item>
+        <Form.Item className="fc-message-form">
           <TextArea
-            rows={4}
+            ref={(TextArea) => (this.messageField = TextArea)}
+            rows={3}
             onChange={this.props.onChange}
             onKeyPress={(evt) =>
               evt.ctrlKey && evt.key === "Enter" ? this.props.onSubmit(evt) : null
             }
             value={this.state.value}
           />
+          <div className="fc-message-form__picker">
+            {this.state.showEmojis ? (
+              <span ref={(el) => (this.emojiPicker = el)}>
+                <Picker onSelect={this.addEmoji} emojiTooltip={true} title="weChat" />
+              </span>
+            ) : (
+              <button onClick={this.showEmojis}>{String.fromCodePoint(0x1f60a)}</button>
+            )}
+          </div>
         </Form.Item>
         <Form.Item>
           <Button
@@ -56,3 +101,4 @@ export default class MessageForm extends React.Component {
     );
   }
 }
+//

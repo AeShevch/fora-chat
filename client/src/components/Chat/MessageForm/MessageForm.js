@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Form, Input } from "antd";
+import { SendOutlined } from "@ant-design/icons";
 const { TextArea } = Input;
 
 export default class MessageForm extends React.Component {
@@ -47,6 +48,7 @@ export default class MessageForm extends React.Component {
             type="primary"
           >
             Send Message
+            <SendOutlined />
           </Button>
           <span className="fc-shortcut-tip">Ctrl + Enter</span>
         </Form.Item>

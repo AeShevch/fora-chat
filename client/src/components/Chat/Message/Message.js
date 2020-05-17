@@ -13,6 +13,7 @@ export default class Message extends React.Component {
       avatar: AVATAR_PATH,
       content: "",
       datetime: "",
+      current_user: "",
     };
   }
 
@@ -21,10 +22,19 @@ export default class Message extends React.Component {
       author: this.props.user,
       content: this.props.text,
       datetime: moment().fromNow(), // TODO
+      current_user: this.props.currentUser,
     });
   }
 
   render() {
-    return <Comment {...this.state} />;
+    return (
+      <Comment
+        className={`fc-message ${
+          this.state.current_user === this.state.author ? "fc-message_user_current" : ""
+        }`}
+        {...this.state}
+      />
+    );
   }
 }
+//

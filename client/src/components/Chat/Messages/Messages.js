@@ -54,7 +54,7 @@ export default class ChatForm extends React.Component {
 
     return (
       <div>
-        <MessagesList messages={messages} />
+        <MessagesList currentUser={this.props.name} messages={messages} />
         <Comment
           avatar={<Avatar src={AVATAR_PATH} alt={this.props.name} />}
           content={

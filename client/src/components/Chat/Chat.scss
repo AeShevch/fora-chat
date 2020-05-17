@@ -14,3 +14,16 @@
     font-size: 1rem;
   }
 }
+
+.fc-message {
+  &_user {
+    &_current {
+      & .ant-comment-content-author-name:after {
+        content: "(You)";
+        margin-left: 5px;
+        color: #272727;
+        font-weight: 700;
+      }
+    }
+  }
+}

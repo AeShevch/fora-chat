@@ -1,36 +1,15 @@
 import React from "react";
-import { Comment, Avatar, Form, Button, List, Input } from "antd";
-import moment from "moment";
+import { Comment, Avatar } from "antd";
+import MessagesList from "../MessagesList/MessagesList";
 import MessageForm from "../MessageForm/MessageForm";
 
-const AVATAR_PATH = `https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png`;
-
-const CommentList = ({ comments }) => {
-  const adapter = (props) => ({
-    author: props.user,
-    avatar: AVATAR_PATH,
-    content: props.text,
-    datetime: moment().fromNow(),
-  });
-  return (
-    <List
-      dataSource={comments}
-      header={`${comments.length} ${comments.length > 1 ? "replies" : "reply"}`}
-      itemLayout="horizontal"
-      renderItem={(props) => (
-        <List.Item>
-          <Comment {...adapter(props)} />
-        </List.Item>
-      )}
-    />
-  );
-};
+const AVATAR_PATH = `https://coubsecure-s.akamaihd.net/get/b189/p/channel/cw_avatar/f2b4362fac7/eff3e186464e2cbaa20dc/profile_pic_new_2x_1521017454_RickAndMorty_RickHappy1500.png`;
 
 export default class ChatForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      comments: "",
+      messages: "",
       submitting: false,
       value: "",
     };
@@ -42,14 +21,12 @@ export default class ChatForm extends React.Component {
     }
     this.setState({
       value: "",
-      comments: [
+      messages: [
+        ...this.state.messages,
         {
-          author: this.props.name,
-          avatar: AVATAR_PATH,
-          content: this.state.value,
-          datetime: moment().fromNow(),
+          user: this.props.name,
+          text: this.state.value,
         },
-        ...this.state.comments,
       ],
     });
 
@@ -64,18 +41,20 @@ export default class ChatForm extends React.Component {
     this.props.setMessage(this.state.value);
   };
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      comments: nextProps.messages,
-    });
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.messages !== this.props.messages) {
+      this.setState({
+        messages: this.props.messages,
+      });
+    }
   }
 
   render() {
-    const { comments, submitting, value } = this.state;
+    const { messages, submitting, value } = this.state;
 
     return (
       <div>
-        <CommentList comments={comments} />
+        <MessagesList messages={messages} />
         <Comment
           avatar={<Avatar src={AVATAR_PATH} alt={this.props.name} />}
           content={

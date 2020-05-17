@@ -22,7 +22,7 @@ export default class Message extends React.Component {
     this.setState({
       author: this.props.user,
       content: ReactEmoji.emojify(this.props.text),
-      datetime: moment().fromNow(), // TODO
+      datetime: moment(this.props.datetime).calendar(),
       current_user: this.props.currentUser,
     });
   }

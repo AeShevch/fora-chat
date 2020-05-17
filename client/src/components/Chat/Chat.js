@@ -23,6 +23,7 @@ export default class Chat extends React.Component {
       message: "",
       messages: "",
       users: "",
+      datetime: "",
     };
   }
 
@@ -56,12 +57,12 @@ export default class Chat extends React.Component {
     evt.preventDefault();
 
     if (this.state.message) {
-      socket.emit("sendMessage", this.state.message, () => this.setState({ message: "" }));
+      socket.emit("sendMessage", this.state, () => this.setState({ message: "", datetime: "" }));
     }
   }
 
-  _setMessage(message) {
-    this.setState({ message });
+  _setMessage(message, datetime) {
+    this.setState({ message, datetime });
   }
 
   render() {

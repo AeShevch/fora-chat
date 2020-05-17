@@ -19,6 +19,7 @@ export default class ChatForm extends React.Component {
     if (!this.state.value) {
       return;
     }
+
     this.setState({
       value: "",
       messages: [
@@ -26,6 +27,7 @@ export default class ChatForm extends React.Component {
         {
           user: this.props.name,
           text: this.state.value,
+          datetime: new Date().toISOString(),
         },
       ],
     });
@@ -38,7 +40,7 @@ export default class ChatForm extends React.Component {
       value: evt.target.value,
     });
 
-    this.props.setMessage(this.state.value);
+    this.props.setMessage(this.state.value, new Date().toISOString());
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {

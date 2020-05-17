@@ -31,7 +31,7 @@ export default class MessageForm extends React.Component {
   }
 
   addEmoji = (e) => {
-    // TODO
+    // TODO Now sends only with text
     const emoji = e.native;
 
     this.setState({
@@ -101,4 +101,3 @@ export default class MessageForm extends React.Component {
     );
   }
 }
-//

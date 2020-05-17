@@ -40,7 +40,14 @@
     position: absolute;
     right: 10px;
     top: 10px;
-    cursor: pointer;
+
+    & > button {
+      border: none;
+      background: none;
+      box-shadow: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
   }
 
   & .emoji-mart-emoji {
@@ -50,13 +57,6 @@
 
     & > span {
       cursor: pointer!important;
-    }
-
-    & > button {
-      border: none;
-      background: none;
-      box-shadow: none;
-      -webkit-appearance: none;
     }
   }
 }

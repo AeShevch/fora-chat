@@ -6,7 +6,8 @@ import "./Chat.scss";
 
 import InfoBar from "./InfoBar/InfoBar";
 import Messages from "./Messages/Messages";
-import { Card } from "antd";
+import UsersList from "./UsersList/UsersList";
+import { Card, Row, Col, Divider } from "antd";
 
 const END_POINT = "localhost:5000";
 
@@ -67,13 +68,21 @@ export default class Chat extends React.Component {
     return (
       <Card className="fc-chat-room" title={`Chatroom «${this.state.room}»`} bordered={false}>
         <InfoBar room={this.state.room} />
-        <Messages
-          name={this.state.name}
-          messages={this.state.messages}
-          message={this.state.message}
-          setMessage={this._setMessage.bind(this)}
-          sendMessage={this._sendMessage.bind(this)}
-        />
+        <Row>
+          <Col span={18}>
+            <Messages
+              name={this.state.name}
+              messages={this.state.messages}
+              message={this.state.message}
+              setMessage={this._setMessage.bind(this)}
+              sendMessage={this._sendMessage.bind(this)}
+            />
+          </Col>
+          <Col span={5} offset={1}>
+            <Divider type="vertical" />
+            <UsersList users={this.state.users} />
+          </Col>
+        </Row>
       </Card>
     );
   }

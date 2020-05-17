@@ -53,7 +53,7 @@ export default class ChatForm extends React.Component {
     const { messages, submitting, value } = this.state;
 
     return (
-      <div>
+      <section className="fc-chat-room__main">
         <MessagesList currentUser={this.props.name} messages={messages} />
         <Comment
           avatar={<Avatar src={AVATAR_PATH} alt={this.props.name} />}
@@ -66,7 +66,7 @@ export default class ChatForm extends React.Component {
             />
           }
         />
-      </div>
+      </section>
     );
   }
 }

@@ -3,6 +3,14 @@
 .fc-main {
   min-height: 100vh;
   font-family: 'IBM Plex Mono', monospace;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  color: rgba(0,0,0,0.8);
+
+  &__header {
+    display: flex;
+    align-items: center;
+  }
 
   &__content {
     display: flex;

@@ -1,4 +1,5 @@
 import React from "react";
+import ScrollToBottom from "react-scroll-to-bottom";
 import { List } from "antd";
 import Message from "../Message/Message";
 
@@ -27,18 +28,20 @@ export default class MessagesList extends React.Component {
 
   render() {
     return (
-      <List
-        dataSource={this.props.messages}
-        header={`${this.props.messages.length} ${
-          this.props.messages.length > 1 ? "messages" : "message"
-        }`}
-        itemLayout="horizontal"
-        renderItem={(props) => (
-          <List.Item>
-            <Message {...props} />
-          </List.Item>
-        )}
-      />
+      <ScrollToBottom>
+        <List
+          dataSource={this.props.messages}
+          header={`${this.props.messages.length} ${
+            this.props.messages.length > 1 ? "messages" : "message"
+          }`}
+          itemLayout="horizontal"
+          renderItem={(props) => (
+            <List.Item>
+              <Message {...props} />
+            </List.Item>
+          )}
+        />
+      </ScrollToBottom>
     );
   }
 }

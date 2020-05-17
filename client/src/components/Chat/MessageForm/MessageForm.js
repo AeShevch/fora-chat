@@ -30,7 +30,14 @@ export default class MessageForm extends React.Component {
     return (
       <div>
         <Form.Item>
-          <TextArea rows={4} onChange={this.props.onChange} value={this.state.value} />
+          <TextArea
+            rows={4}
+            onChange={this.props.onChange}
+            onKeyPress={(evt) =>
+              evt.ctrlKey && evt.key === "Enter" ? this.props.onSubmit(evt) : null
+            }
+            value={this.state.value}
+          />
         </Form.Item>
         <Form.Item>
           <Button
@@ -41,6 +48,7 @@ export default class MessageForm extends React.Component {
           >
             Send Message
           </Button>
+          <span className="fc-shortcut-tip">Ctrl + Enter</span>
         </Form.Item>
       </div>
     );

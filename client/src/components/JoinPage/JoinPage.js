@@ -4,6 +4,9 @@ import { Card } from "antd";
 import JoinForm from "./Form/Form";
 import "./JoinPage.scss";
 
+/**
+ * Join chatroom page component
+ */
 export default class JoinPage extends React.Component {
   render() {
     return (

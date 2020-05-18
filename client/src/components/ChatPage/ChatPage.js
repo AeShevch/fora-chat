@@ -13,6 +13,9 @@ const END_POINT = "localhost:5000";
 
 let socket;
 
+/**
+ * Chat page component
+ */
 export default class ChatPage extends React.Component {
   constructor(props) {
     super(props);
@@ -34,18 +37,21 @@ export default class ChatPage extends React.Component {
 
     this.setState({ name, room });
 
+    // Adding a user to the room
     socket.emit("join", { name, room }, (error) => {
       if (error) {
         alert(error);
       }
     });
 
+    // New message listener
     socket.on("message", (message) => {
       this.setState({
         messages: [...this.state.messages, message],
       });
     });
 
+    // Room data listener
     socket.on("roomData", ({ users }) => {
       this.setState({
         users: users,
@@ -53,6 +59,7 @@ export default class ChatPage extends React.Component {
     });
   }
 
+  // Sending message to the server
   _sendMessage(evt) {
     evt.preventDefault();
 
@@ -61,6 +68,7 @@ export default class ChatPage extends React.Component {
     }
   }
 
+  // Save message info to the state before sending
   _setMessage(message, datetime) {
     this.setState({ message, datetime });
   }

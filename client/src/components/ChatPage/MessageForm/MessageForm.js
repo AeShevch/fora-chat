@@ -5,6 +5,9 @@ import { Picker } from "emoji-mart";
 import { SendOutlined } from "@ant-design/icons";
 const { TextArea } = Input;
 
+/**
+ * New message form component
+ */
 export default class MessageForm extends React.Component {
   constructor(props) {
     super(props);
@@ -30,18 +33,20 @@ export default class MessageForm extends React.Component {
     }
   }
 
+  // Adds chosen emoji to state
   _addEmoji = (e) => {
-    // TODO Now sends only with text
     const emoji = e.native;
 
     this.setState({
       value: this.state.value + emoji,
     });
 
+    // TODO Trigger textarea change
     // const event = new Event("input", { bubbles: true });
     // this.messageField.dispatchEvent(event);
   };
 
+  // Opens the emoji picker
   _showEmojis = () => {
     this.setState(
       {
@@ -51,6 +56,7 @@ export default class MessageForm extends React.Component {
     );
   };
 
+  // Closes the emoji picker
   _closeMenu = (e) => {
     if (this.emojiPicker !== null && !this.emojiPicker.contains(e.target)) {
       this.setState(

@@ -3,6 +3,9 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import { List } from "antd";
 import Message from "../Message/Message";
 
+/**
+ * Messages lis component
+ */
 export default class MessagesList extends React.Component {
   constructor(props) {
     super(props);

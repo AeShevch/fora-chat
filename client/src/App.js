@@ -1,15 +1,26 @@
-import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+/**
+ * App.js
+ *
+ * This is the entry file for the application
+ *
+ */
 
-import logo from "./logo.svg";
+import React from "react";
+
+// Import components
 import JoinPage from "./components/JoinPage/JoinPage";
 import ChatPage from "./components/ChatPage/ChatPage";
 
+// Load logo and styles
+import logo from "./logo.svg";
 import "./App.scss";
 
+// Import all the third party stuff
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Layout } from "antd";
 const { Header, Content, Footer } = Layout;
 
+// The core component
 export default class App extends React.Component {
   render() {
     return (

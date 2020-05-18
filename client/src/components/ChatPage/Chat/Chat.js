@@ -5,6 +5,9 @@ import MessageForm from "../MessageForm/MessageForm";
 
 const AVATAR_PATH = `https://coubsecure-s.akamaihd.net/get/b189/p/channel/cw_avatar/f2b4362fac7/eff3e186464e2cbaa20dc/profile_pic_new_2x_1521017454_RickAndMorty_RickHappy1500.png`;
 
+/**
+ * Chat component - messages list and new message form
+ */
 export default class Chat extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +18,7 @@ export default class Chat extends React.Component {
     };
   }
 
+  // On submit form handler
   _handleSubmit = (evt) => {
     if (!this.state.value) {
       return;
@@ -35,6 +39,7 @@ export default class Chat extends React.Component {
     this.props.sendMessage(evt);
   };
 
+  // On change fotm textarea handler
   _handleChange = (evt) => {
     this.setState({
       value: evt.target.value,

@@ -4,6 +4,9 @@ import { Form, Input, Button } from "antd";
 import { UserOutlined, MessageOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
+/**
+ * Join chatroom form component
+ */
 export default class JoinForm extends React.Component {
   constructor(props) {
     super(props);
@@ -13,12 +16,14 @@ export default class JoinForm extends React.Component {
     };
   }
 
+  // Updates state on form changing
   _onChangeHandler = (evt, fieldName) => {
     this.setState({
       [fieldName]: evt.target.value,
     });
   };
 
+  // Blocks submitting if one of fields is empty
   _onSubmitHandler = (evt) => (!this.state.name || !this.state.room ? evt.preventDefault() : null);
 
   render() {

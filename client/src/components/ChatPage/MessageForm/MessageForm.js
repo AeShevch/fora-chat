@@ -17,6 +17,8 @@ export default class MessageForm extends React.Component {
       submitting: false,
       showEmojis: false,
     };
+
+    this.messageField = React.createRef();
   }
 
   componentDidMount() {
@@ -42,8 +44,7 @@ export default class MessageForm extends React.Component {
     });
 
     // TODO Trigger textarea change
-    // const event = new Event("input", { bubbles: true });
-    // this.messageField.dispatchEvent(event);
+    // this.messageField.current.dispatchEvent(new Event("input", { bubbles: true }));
   };
 
   // Opens the emoji picker
@@ -73,6 +74,7 @@ export default class MessageForm extends React.Component {
       <div>
         <Form.Item className="fc-message-form">
           <TextArea
+            ref={this.messageField}
             rows={3}
             onChange={this.props.onChange}
             onKeyPress={(evt) =>

@@ -1,4 +1,5 @@
 import React from "react";
+import ReactTestUtils from "react-dom/test-utils";
 import { Button, Form, Input } from "antd";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
@@ -44,7 +45,7 @@ export default class MessageForm extends React.Component {
     });
 
     // TODO Trigger textarea change
-    // this.messageField.current.dispatchEvent(new Event("input", { bubbles: true }));
+    // ReactTestUtils.Simulate.change(this.messageField);
   };
 
   // Opens the emoji picker
@@ -74,7 +75,8 @@ export default class MessageForm extends React.Component {
       <div>
         <Form.Item className="fc-message-form">
           <TextArea
-            ref={this.messageField}
+            ref={(el) => (this.messageField = el)}
+            id="messageField"
             rows={3}
             onChange={this.props.onChange}
             onKeyPress={(evt) =>
